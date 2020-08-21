@@ -7,4 +7,4 @@ const pgconn = new Pool({
     ssl: false,
 });
   
-module.exports = { pgconn }
+module.exports = { pgconn, DB_CONFIG }

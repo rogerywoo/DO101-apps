@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { pgconn } = require('../db/config')
+const { pgconn, DB_CONFIG } = require('../db/config')
 
 /* Show home page. */
 router.get('/', function(req, res) {
   // we first check if the 'contacts' table exists
+  console.log(`connect ${DB_CONFIG}`);
+
   pgconn.query("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'contacts')", function(err,results) {
     if (err) {
       console.log(err);
