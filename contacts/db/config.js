@@ -4,11 +4,11 @@ const { Pool } = require('pg');
 
 console.log(`connect ${DB_CONFIG}`);
 
-// const pgconn = new Pool({
-//     connectionString: DB_CONFIG,
-//     ssl: false,
-// });
+const pgconn = new Pool({
+    connectionString: DB_CONFIG,
+    ssl: false,
+});
 
-const pgconn = DB_CONFIG;
+//const pgconn = DB_CONFIG;
   
 module.exports = { pgconn, DB_CONFIG }
