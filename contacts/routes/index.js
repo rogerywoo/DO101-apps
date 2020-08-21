@@ -7,32 +7,32 @@ router.get('/', function(req, res) {
   // we first check if the 'contacts' table exists
   console.log(`connect ${DB_CONFIG}`);
 
-  pgconn.query("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'contacts')", function(err,results) {
-    if (err) {
-      console.log(err);
-      res.render('index', { error: 'Database connection failure! '+err.stack, contacts: null, title: 'Contact List' });
-    }
+  // pgconn.query("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'contacts')", function(err,results) {
+  //   if (err) {
+  //     console.log(err);
+  //     res.render('index', { error: 'Database connection failure! '+err.stack, contacts: null, title: 'Contact List' });
+  //   }
 
-    // 'contacts' table does not exist. Show an empty table.
-    else if(results.rows[0].exists == false) {
-      res.render('index', { error: null, contacts: null, title: 'Contact List' });
-    }
+  //   // 'contacts' table does not exist. Show an empty table.
+  //   else if(results.rows[0].exists == false) {
+  //     res.render('index', { error: null, contacts: null, title: 'Contact List' });
+  //   }
 
-    // 'contacts' table exists. Show the records.
-    else {
-      pgconn.query('SELECT * FROM contacts', function(err,results) {
-        if (err) {
-          console.log(err);
-          res.render('index', { error: 'Database connection failure! '+err.stack, contacts: null, title: 'Contact List' });
-        }
-        else {
-          let contacts = results.rows;
-          console.log(contacts);
-          res.render('index', { error: null, contacts: contacts, title: 'Contact List' });
-        }
-      })  
-    }
-  });
+  //   // 'contacts' table exists. Show the records.
+  //   else {
+  //     pgconn.query('SELECT * FROM contacts', function(err,results) {
+  //       if (err) {
+  //         console.log(err);
+  //         res.render('index', { error: 'Database connection failure! '+err.stack, contacts: null, title: 'Contact List' });
+  //       }
+  //       else {
+  //         let contacts = results.rows;
+  //         console.log(contacts);
+  //         res.render('index', { error: null, contacts: contacts, title: 'Contact List' });
+  //       }
+  //     })  
+  //   }
+  // });
 });
 
 /* Seed test data */
